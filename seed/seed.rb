@@ -43,5 +43,3 @@ t2.add_wagon(w3)
 # puts Station.all
 
 # pp Train.find('aa1-bb')
-
-sleep 10

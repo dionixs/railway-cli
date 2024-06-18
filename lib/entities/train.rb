@@ -6,24 +6,19 @@ class Train
   include Validatable
   include Vendor
 
-  @trains ||= []
-
-  class << self
-    def trains
-      @trains ||= []
-    end
-
-    def all
-      ObjectSpace.each_object(self).to_a
-    end
-
-    def find(number)
-      all.find { |t| t.number == number }
-    end
+  def self.trains
+    @trains ||= []
   end
 
-  attr_reader :number, :type, :wagons,
-              :speed, :stations
+  def self.all
+    ObjectSpace.each_object(self).to_a
+  end
+
+  def self.find(number)
+    all.find { |t| t.number == number }
+  end
+
+  attr_reader :number, :type, :wagons, :speed, :stations
 
   def initialize(number)
     @number = number
