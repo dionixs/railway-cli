@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Train
+  include Constants
   include InstanceCounter
   include Validatable
   include Vendor
@@ -14,19 +15,6 @@ class Train
   def self.find(number)
     @@trains.find { |t| t.number == number }
   end
-
-  PASSENGER_TYPE = :passenger
-  CARGO_TYPE = :cargo
-
-  INITIAL_SPEED = 0
-  PASSENGER_SPEED = 50
-
-  INITIAL_STATION = 0
-
-  # три буквы или цифры в любом порядке
-  # необязательный дефис (может быть, а может нет)
-  # и еще 2 буквы или цифры после дефиса
-  NUMBER_FORMAT = /^[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i
 
   attr_reader :number, :type, :wagons,
               :speed, :stations
@@ -103,11 +91,11 @@ class Train
   protected
 
   def validate!
-    raise NotImplementedError, 'Unable to create an object of a Class that is a parent!' if instance_of?(Train)
-    raise 'Number of train cannot be blank' if number.nil?
-    raise 'Number of train must be between 5 and 6 characters long' if invalid_length?(number, 5, 6)
+    raise NotImplementedError, 'Cannot instantiate parent class!' if instance_of?(Train)
+    raise 'Number cannot be blank' if number.nil?
+    raise 'Number must be between 5..6 characters long' if invalid_length?(number, 5, 6)
     raise 'Number has invalid format' if number !~ NUMBER_FORMAT
-    raise 'Vendor name must be between 2 and 50 characters long' if !vendor_name.nil? && invalid_length?(vendor_name)
+    raise 'Vendor name must be between 2..50 characters long' if valid_vendor_name?
   end
 
   private

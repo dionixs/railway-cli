@@ -10,6 +10,10 @@ module Validatable
     false
   end
 
+  def valid_vendor_name?
+    !vendor_name.nil? && invalid_length?(vendor_name)
+  end
+
   private
 
   def invalid_length?(attr, min_length = 2, max_length = 50)

@@ -37,3 +37,9 @@ t2.add_wagon(w3)
 
 # s1.each_train { |t| puts t }
 # t2.each_wagon { |w| puts w }
+
+# puts Route.all
+puts Train.all
+# puts Station.all
+
+sleep 10

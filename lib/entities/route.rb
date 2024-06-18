@@ -4,10 +4,20 @@ class Route
   include InstanceCounter
   include Validatable
 
-  @@routes ||= []
+  @routes ||= []
 
-  def self.all
-    @@routes
+  class << self
+    def routes
+      @routes ||= []
+    end
+
+    def add_route(route)
+      routes << route
+    end
+
+    def all
+      routes
+    end
   end
 
   attr_reader :stations, :start_station, :end_station
@@ -17,7 +27,7 @@ class Route
     @end_station = end_station
     @stations = [start_station, end_station]
     validate!
-    @@routes << self
+    self.class.add_route(self)
     register_instance
   end
 

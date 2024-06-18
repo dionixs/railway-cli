@@ -6,21 +6,31 @@ class Station
 
   attr_reader :name, :trains
 
-  @@stations ||= []
+  @stations ||= []
 
-  def self.all
-    @@stations
-  end
+  class << self
+    def stations
+      @stations ||= []
+    end
 
-  def self.find(name)
-    @@stations.find { |t| t.name == name }
+    def add_station(station)
+      stations << station
+    end
+
+    def all
+      stations
+    end
+
+    def find(name)
+      stations.find { |t| t.name == name }
+    end
   end
 
   def initialize(name)
-    @name = name
+    @name = name.capitalize
     @trains = []
     validate!
-    @@stations << self
+    self.class.add_station(self)
     register_instance
   end
 
@@ -42,6 +52,10 @@ class Station
 
   def each_train_with_index(&block)
     @trains.each_with_index { |t, i| block.call(t, i) }
+  end
+
+  def name=(value)
+    @name = value.capitalize
   end
 
   protected

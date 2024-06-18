@@ -7,7 +7,7 @@ module StationActions
   end
 
   def self.find_or_create_by(name = nil)
-    station = Station.find(name&.capitalize)
+    station = Station.find(name)
     if station
       puts 'Станция уже существует!'
       station

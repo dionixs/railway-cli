@@ -20,9 +20,7 @@ module TrainMoveActions
   end
 
   def self.move_train!(train)
-    message = "Выберете куда переместить поезд:\n \
-              \t1 - Вперед\n \
-              \t2 - Назад\n"
+    message = "Выберете куда переместить поезд:\n\t1 - Вперед\n\t2 - Назад\n"
     input = InputHandler.handle_input(message).to_i
 
     if input == 1
