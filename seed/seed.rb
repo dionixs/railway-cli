@@ -39,7 +39,9 @@ t2.add_wagon(w3)
 # t2.each_wagon { |w| puts w }
 
 # puts Route.all
-puts Train.all
+# puts Train.all.inspect
 # puts Station.all
+
+# pp Train.find('aa1-bb')
 
 sleep 10
