@@ -12,15 +12,12 @@ class CargoWagon < Wagon
   end
 
   def take_volume(volume)
-    return if free_volume.zero?
-
-    self.busy_volume += volume if busy_volume != total_volume
-    self.free_volume -= volume if free_volume.positive?
+    free_volume.zero? ? return : change_volume!(volume)
 
     return unless free_volume.negative?
 
     self.free_volume = 0
-    self.busy_volume = @total_volume
+    self.busy_volume = total_volume
   end
 
   protected
@@ -33,4 +30,9 @@ class CargoWagon < Wagon
   private
 
   attr_writer :busy_volume, :free_volume
+
+  def change_volume!(volume)
+    self.busy_volume += volume if busy_volume != total_volume
+    self.free_volume -= volume if free_volume.positive?
+  end
 end

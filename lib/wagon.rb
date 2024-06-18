@@ -25,6 +25,6 @@ class Wagon
   private
 
   def generate_number
-    rand(10_000..100_000)
+    rand(36**5).to_s(36)
   end
 end

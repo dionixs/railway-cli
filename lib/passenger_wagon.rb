@@ -11,7 +11,6 @@ class PassengerWagon < Wagon
     @free_seats = @total_seats
   end
 
-  # метод, который "занимает места" в вагоне (по одному за раз)
   def take_seat
     self.busy_seats += 1 if busy_seats != total_seats
     self.free_seats -= 1 if free_seats != 0
