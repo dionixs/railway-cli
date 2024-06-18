@@ -11,8 +11,7 @@ Railway.run -> { user_input != 'exit' } do
   user_input = InputHandler.handle_input
 
   begin
-    command = Railway::Menu.choice_option(user_input)
-    command&.call
+    Railway::Menu.choice_option(user_input)&.call
   rescue StandardError => e
     attempt += 1
     puts "Возникла ошибка: #{e.message}. Попробуйте еще раз!"
