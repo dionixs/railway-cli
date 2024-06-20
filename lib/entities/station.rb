@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Station
+  include Accessors
   include InstanceCounter
   include Validatable
 

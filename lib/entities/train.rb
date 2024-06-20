@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Train
+  include Accessors
   include Constants
   include InstanceCounter
   include Validatable
@@ -18,7 +19,9 @@ class Train
     all.find { |t| t.number == number }
   end
 
-  attr_reader :number, :type, :wagons, :speed, :stations
+  attr_accessor_with_history :number
+
+  attr_reader :type, :wagons, :speed, :stations
 
   def initialize(number)
     @number = number
@@ -56,7 +59,7 @@ class Train
   end
 
   def show_forward_station
-    return start_station_name if start_station?
+    return @stations[0].name if start_station?
 
     forward_station_name
   end
@@ -118,13 +121,6 @@ class Train
   # только внутри метода can_attach?/can_detach?
   def type_match?(wagon)
     wagon.type == type
-  end
-
-  # метод который возвращает название начальной станции
-  # вынесен в private т.к. метод
-  # используеться только внутри метода show_forward_station
-  def start_station_name
-    @stations[0].name
   end
 
   # метод который возвращает название конечной станции

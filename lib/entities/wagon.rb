@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class Wagon
+  include Accessors
+  include Constants
   include Validatable
   include Vendor
 
-  PASSENGER_TYPE = :passenger
-  CARGO_TYPE = :cargo
+  attr_accessor_with_history :number
 
-  attr_reader :type, :number
+  attr_reader :type
 
   def initialize
     @number = generate_number

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Route
+  include Accessors
   include InstanceCounter
   include Validatable
 
