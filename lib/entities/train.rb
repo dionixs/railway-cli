@@ -19,7 +19,8 @@ class Train
     all.find { |t| t.number == number }
   end
 
-  attr_accessor_with_history :number
+  # attr_accessor_with_history :number
+  # strong_attr_accessor :number, type: String
 
   attr_reader :type, :wagons, :speed, :stations
 
