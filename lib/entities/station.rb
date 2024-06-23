@@ -3,9 +3,12 @@
 class Station
   include Accessors
   include InstanceCounter
-  include Validatable
+  include Validation
 
   attr_reader :name, :trains
+
+  validate :name, :presence
+  validate :name, :type, String
 
   @stations ||= []
 
@@ -59,12 +62,11 @@ class Station
     @name = value.capitalize
   end
 
-  protected
-
-  def validate!
-    raise 'Station name cannot be blank' if name.nil?
-    raise 'Station name must be between 2 and 50 characters long' if invalid_length?(name)
-  end
+  # protected
+  #
+  # def validate!
+  #   raise 'Station name must be between 2 and 50 characters long' if invalid_length?(name)
+  # end
 
   private
 

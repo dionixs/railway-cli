@@ -6,10 +6,10 @@ class PassengerTrain < Train
     super
   end
 
-  protected
-
-  def validate!
-    super
-    raise 'Type of train specified is not correct' if type != PASSENGER_TYPE
-  end
+  # protected
+  #
+  # def validate!
+  #   super
+  #   raise 'Type of train specified is not correct' if type != PASSENGER_TYPE
+  # end
 end

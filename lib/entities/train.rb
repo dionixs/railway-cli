@@ -4,7 +4,7 @@ class Train
   include Accessors
   include Constants
   include InstanceCounter
-  include Validatable
+  include Validation
   include Vendor
 
   def self.trains
@@ -19,10 +19,13 @@ class Train
     all.find { |t| t.number == number }
   end
 
-  # attr_accessor_with_history :number
-  # strong_attr_accessor :number, type: String
-
   attr_reader :type, :wagons, :speed, :stations
+
+  strong_attr_accessor :number, type: String
+
+  validate :number, :presence
+  validate :number, :format, NUMBER_FORMAT
+  validate :number, :type, String
 
   def initialize(number)
     @number = number
@@ -93,15 +96,13 @@ class Train
     @wagons.each_with_index { |w, i| block.call(w, i) }
   end
 
-  protected
-
-  def validate!
-    raise NotImplementedError, 'Cannot instantiate parent class!' if instance_of?(Train)
-    raise 'Number cannot be blank' if number.nil?
-    raise 'Number must be between 5..6 characters long' if invalid_length?(number, 5, 6)
-    raise 'Number has invalid format' if number !~ NUMBER_FORMAT
-    raise 'Vendor name must be between 2..50 characters long' if valid_vendor_name?
-  end
+  # protected
+  #
+  # def validate!
+  #   raise NotImplementedError, 'Cannot instantiate parent class!' if instance_of?(Train)
+  #   raise 'Number must be between 5..6 characters long' if invalid_length?(number, 5, 6)
+  #   raise 'Vendor name must be between 2..50 characters long' if valid_vendor_name?
+  # end
 
   private
 

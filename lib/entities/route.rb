@@ -3,7 +3,7 @@
 class Route
   include Accessors
   include InstanceCounter
-  include Validatable
+  include Validation
 
   @routes ||= []
 
@@ -22,6 +22,12 @@ class Route
   end
 
   attr_reader :stations, :start_station, :end_station
+
+  validate :start_station, :presence
+  validate :end_station, :presence
+
+  validate :start_station, :type, Station
+  validate :end_station, :type, Station
 
   def initialize(start_station, end_station)
     @start_station = start_station
@@ -47,14 +53,12 @@ class Route
     @stations.each_with_index { |s, i| print @stations.size > (i + 1) ? "#{s.name} > " : s.name }
   end
 
-  protected
-
-  def validate!
-    raise 'Start station name cannot be blank' if start_station.name.nil?
-    raise 'End station name cannot be blank' if end_station.name.nil?
-    raise 'Start station name must be between 2 and 50 characters long' if invalid_length?(start_station.name)
-    raise 'End station name must be between 2 and 50 characters long' if invalid_length?(end_station.name)
-  end
+  # protected
+  #
+  # def validate!
+  #   raise 'Start station name must be between 2 and 50 characters long' if invalid_length?(start_station.name)
+  #   raise 'End station name must be between 2 and 50 characters long' if invalid_length?(end_station.name)
+  # end
 
   private
 

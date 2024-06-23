@@ -16,12 +16,12 @@ class PassengerWagon < Wagon
     self.free_seats -= 1 if free_seats != 0
   end
 
-  protected
-
-  def validate!
-    super
-    raise 'Type of wagon specified is not correct' if type != PASSENGER_TYPE
-  end
+  # protected
+  #
+  # def validate!
+  #   super
+  #   raise 'Type of wagon specified is not correct' if type != PASSENGER_TYPE
+  # end
 
   private
 

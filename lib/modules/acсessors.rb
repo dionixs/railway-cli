@@ -36,7 +36,7 @@ module Accessors
       end
     end
 
-    private
+    protected
 
     def attr_accessor_history(name, instance_var_name)
       define_method("#{name}_history".to_sym) do

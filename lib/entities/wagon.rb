@@ -3,12 +3,15 @@
 class Wagon
   include Accessors
   include Constants
-  include Validatable
+  include Validation
   include Vendor
 
   attr_accessor_with_history :number
 
   attr_reader :type
+
+  validate :number, :presence
+  validate :number, :type, String
 
   def initialize
     @number = generate_number
@@ -16,12 +19,12 @@ class Wagon
     validate!
   end
 
-  protected
-
-  def validate!
-    raise NotImplementedError, 'Unable to create an object of a Class that is a parent!' if instance_of?(Wagon)
-    raise 'Vendor name must be between 2 and 50 characters long' if !vendor_name.nil? && invalid_length?(vendor_name)
-  end
+  # protected
+  #
+  # def validate!
+  #   raise NotImplementedError, 'Unable to create an object of a Class that is a parent!' if instance_of?(Wagon)
+  #   raise 'Vendor name must be between 2 and 50 characters long' if !vendor_name.nil? && invalid_length?(vendor_name)
+  # end
 
   private
 

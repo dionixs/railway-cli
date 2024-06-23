@@ -2,6 +2,7 @@
 
 require_relative './modules/acсessors'
 require_relative './modules/constants'
+require_relative './modules/validation'
 require_relative './modules/validatable'
 require_relative './modules/instance_counter'
 require_relative './modules/vendor'

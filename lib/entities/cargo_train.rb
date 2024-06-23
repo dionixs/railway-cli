@@ -6,10 +6,10 @@ class CargoTrain < Train
     super
   end
 
-  protected
-
-  def validate!
-    super
-    raise 'Type of train specified is not correct' if type != CARGO_TYPE
-  end
+  # protected
+  #
+  # def validate!
+  #   super
+  #   raise 'Type of train specified is not correct' if type != CARGO_TYPE
+  # end
 end

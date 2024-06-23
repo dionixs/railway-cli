@@ -20,12 +20,12 @@ class CargoWagon < Wagon
     self.busy_volume = total_volume
   end
 
-  protected
-
-  def validate!
-    super
-    raise 'Type of wagon specified is not correct' if type != CARGO_TYPE
-  end
+  # protected
+  #
+  # def validate!
+  #   super
+  #   raise 'Type of wagon specified is not correct' if type != CARGO_TYPE
+  # end
 
   private
 
