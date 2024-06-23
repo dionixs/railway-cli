@@ -41,9 +41,10 @@ module Accessors
     def attr_accessor_history(name, instance_var_name)
       define_method("#{name}_history".to_sym) do
         unless instance_variable_get("@#{name}_history".to_sym)
-          instance_var_names = []
-          instance_var_names << instance_variable_get(instance_var_name) if instance_variable_get(instance_var_name)
-          instance_variable_set("@#{name}_history".to_sym, instance_var_names)
+          instance_var_values = []
+          instance_var = instance_variable_get(instance_var_name)
+          instance_var_values << instance_var if instance_var
+          instance_variable_set("@#{name}_history".to_sym, instance_var_values)
         end
         instance_variable_get("@#{name}_history".to_sym)
       end
