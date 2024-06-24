@@ -23,9 +23,6 @@ class Route
 
   attr_reader :stations, :start_station, :end_station
 
-  validate :start_station, :presence
-  validate :end_station, :presence
-
   validate :start_station, :type, Station
   validate :end_station, :type, Station
 

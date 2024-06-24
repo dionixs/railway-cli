@@ -5,11 +5,15 @@ s2 = Station.new('Москва')
 Station.new('Хабаровск')
 s4 = Station.new('Чебоксары')
 s5 = Station.new('Казань')
+# s6 = Station.new('')
+# s7 = Station.new(nil)
 
 t1 = PassengerTrain.new('aa1-bb')
 t2 = PassengerTrain.new('a21-ab')
 t3 = CargoTrain.new('c21cc')
 t4 = CargoTrain.new('c2124')
+# t5 = CargoTrain.new('fake')
+# t6 = CargoTrain.new(nil)
 
 w1 = PassengerWagon.new { |p| p.total_seats = 100 }
 w2 = PassengerWagon.new { |p| p.total_seats = 100 }
